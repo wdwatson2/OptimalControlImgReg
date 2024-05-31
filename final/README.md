@@ -7,8 +7,15 @@ $$
 subject to 
 
 $$
-\frac{d}{dt} z_x(t) = v(z_x(t),t), \quad \text{ for } \quad t \in (0,T], \quad z_x(0)=x,
+\frac{d}{dt} z_x(t) = v(z_x(t),t), \quad \text{ for } \quad t in (0,T], \quad z_x(0)=x,
 $$
 
+In this discrete version, the continuous integral of the squared differences between the transformed template image and the reference image is approximated using the MSE as follows:
 
-The integral is approximated by evaluating the transformed template $\CT(z_x(T))$ and the reference $\CR(x)$ at grid points that can be varied in width. In the reading, the integral can instead be approximated with a quadrature rule, so that is what I will experiment with next (look at [torchquad](https://github.com/esa/torchquad)).
+$$
+\min_v \frac{1}{2N} \sum_{i=1}^N (\CT(z_{x_i}(T)) - \CR(x_i))^2 + S[v]
+$$
+
+Here, $N$ represents the number of discrete grid points in the image domain $\Omega$. In the examples, I create $200 \times 200$ grid, so $40000$ grid points for the digit images which are quite small, $28 \times 28$. This approach normalizes the error by the number of points, making the image domain irrelavant and might result in slightly different behavior than original formulation.
+
+
