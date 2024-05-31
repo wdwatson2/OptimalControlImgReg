@@ -1,4 +1,5 @@
 `examples.ipynb` is what you want to look at. 
+
 `helpers.py` contains the loss function which outlines the steps I take during the forward pass.
 
 This is an optimal control formulation of image registration.
